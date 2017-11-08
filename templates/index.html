@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<style>
+   form {
+     width: 450px;
+   }
+   div {
+     margin-bottom: 20px;
+   }
+   label {
+     display: inline-block;
+     width: 240px;
+     text-align: right;
+     padding-right: 10px;
+   }
+   button {
+     float: right;
+   } 
+   input {
+     float: right;
+     width: 200px;
+   }
+   footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+   }
+</style>
+
+<head>
+    <title>Random Numbers App</title>
+    <meta charset="utf-8">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+ 
+<body style=background-color:#FFFFCC;>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a>
+                    </li>
+                    <li role="presentation"><a href="#">  Sign In  </a>
+                    </li>
+                    <li role="presentation"><a href="showSignUp">  Sign Up  </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+ 
+        <div class="principal">
+            <h3 class="text-muted">Random Numbers App</h3>
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
+            </p>
+        </div>
+ 
+        <div class="row uno">
+           <div class="row umbral">
+                  <form method="post" action={{ url_for('result') }} >
+                     <div>
+                        <label for="umbsup">Umbral Superior:</label>
+                        <input type="number" id="umbsup" name="umbsup" value="0" min="0" max="100"/>
+                     </div>
+                     <div>
+                        <label for="umbinf">Umbral Inferior:</label>
+                        <input type="number" id="umbinf" name="umbinf" value="0" min="0" max="100"/>
+                     </div>
+                     <div class="button">
+                        <button class="btn btn-lg btn-success" type="submit">Enviar</button>
+                     </div>
+                  </form> 
+           </div>
+           <div class="row media">
+               <form method="get" action={{ url_for('media') }} >
+                  <div>
+                     <label for="media">Valor medio:</label>
+                     <input type="text" id="media" name="media" value="0" readonly="readonly" />
+                  </div>
+                  <div>
+                     <label for="bbdd">BBDD:</label>
+                     <input type="text" id="bbdd" name="bbdd" value=" " readonly="readonly" />
+                  </div>
+                  <div class="button">
+                     <button class="btn btn-lg btn-success" type="submit">Calcular Media</button>
+                  </div>
+               </form>
+           </div>
+        </div>
+        
+         <div class="row dos">
+           <div class="row actual">
+                  <form method="post" action={{ url_for('captura') }} >
+                     <div>
+                        <label for="umbcap">Umbral:</label>
+                        <input type="number" id="umbcap" name="umbcap" value="0" min="0" max="100"/>
+                     </div>
+                     <div>
+                        <label for="rescap">Valor capturado:</label>
+                        <input type="text" id="rescap" name="rescap" value="0" readonly="readonly" />
+                     </div>
+                     <div class="button">
+                        <button class="btn btn-lg btn-success" type="submit">Consultar</button>
+                     </div>
+                  </form> 
+           </div>
+           <div class="row graph">
+               <form method="get" action={{ url_for('grafica') }} >
+                  <div class="button">
+                     <button class="btn btn-lg btn-success" type="submit">Graficas y estadisticas</button>
+                  </div>
+               </form>
+           </div>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; Natalia de la Hoz Carracedo - Computacion en red - UAH 2017</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>

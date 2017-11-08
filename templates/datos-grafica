@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<style type="text/ccs">
+   form {
+     width: 450px;
+   }
+   div {
+     margin-bottom: 20px;
+   }
+   label {
+     display: inline-block;
+     width: 240px;
+     text-align: right;
+     padding-right: 10px;
+   }
+   button {
+     float: right;
+   } 
+   input {
+     float: right;
+     width: 200px;
+   }
+   footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+   }
+</style>
+
+<head>
+    <title>Random Numbers App</title>
+    <meta charset="utf-8" http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+ 
+<body style=background-color:#FFFFCC;>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a>
+                    </li>
+                    <li role="presentation"><a href="#">  Sign In  </a>
+                    </li>
+                    <li role="presentation"><a href="showSignUp">  Sign Up  </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+ 
+        <div class="principal">
+            <h3 class="text-muted">Random Numbers App</h3>
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
+            </p>
+        </div>
+        <div>
+            <iframe frameborder="0" src="https://beebotte.com/dash/1fa46130-bf43-11e7-bfef-6f68fef5ca14" scrolling=no width="557px" height="338px style="scale(0.95)" ></iframe>
+        </div> 
+        
+        <footer class="footer">
+            <p>&copy; Natalia de la Hoz Carracedo - Computacion en red - UAH 2017</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
