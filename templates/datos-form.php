@@ -140,7 +140,7 @@
             <!--<li>{{listsup}}</li>-->
             {{listsup}}
         <h2 class="text-muted">Resultados Inferiores:</h2>
-            <input type="button" value="Genera una tabla" onclick="genera_tabla()">
+            <input type="button" value="Genera una tabla" onclick="genera_tabla({{listinf}})">
             <!--<li >{{listinf}}</li>-->
             {{listinf}}
         <h2 class="text-muted">Resultados Superiores (Beebotte):</h2> 

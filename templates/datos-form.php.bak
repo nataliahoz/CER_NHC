@@ -34,22 +34,22 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <script Language="JavaScript">
-      function genera_tabla() {
+      function genera_tabla(arg) {
       // Obtener la referencia del elemento body
       var body = document.getElementsByTagName("body")[0];
       // Crea un elemento <table> y un elemento <tbody>
       var tabla   = document.createElement("table");
       var tblBody = document.createElement("tbody");
       // Crea las celdas
-      for (var i = 0; i < 2; i++) {
+      for (var i = 0; arg(i)!=0; i++) {
        // Crea las hileras de la tabla
        var hilera = document.createElement("tr");
-       for (var j = 0; j < 2; j++) {
+       for (var j = 0; j < 1; j++) {
          // Crea un elemento <td> y un nodo de texto, haz que el nodo de
          // texto sea el contenido de <td>, ubica el elemento <td> al final
          // de la hilera de la tabla
          var celda = document.createElement("td");
-         var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
+         var textoCelda = document.createTextNode(arg(i));
          celda.appendChild(textoCelda);
          hilera.appendChild(celda);
        }
@@ -140,12 +140,7 @@
             <!--<li>{{listsup}}</li>-->
             {{listsup}}
         <h2 class="text-muted">Resultados Inferiores:</h2>
-            <!--<table width="100%" border="1">
-               <? $arrays={{listinf}}; ?>
-               <? foreach($arrays as $array):?>
-                     <tr><?php echo $arrays ?></tr>
-               <? endforeach;?>
-            </table>-->
+            <input type="button" value="Genera una tabla" onclick="genera_tabla()">
             <!--<li >{{listinf}}</li>-->
             {{listinf}}
         <h2 class="text-muted">Resultados Superiores (Beebotte):</h2> 
