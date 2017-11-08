@@ -41,7 +41,7 @@
       var tabla   = document.createElement("table");
       var tblBody = document.createElement("tbody");
       // Crea las celdas
-      for (var i = 0; arg(i)!=0; i++) {
+      for (var i = 0; arg[i]!=0; i++) {
        // Crea las hileras de la tabla
        var hilera = document.createElement("tr");
        for (var j = 0; j < 1; j++) {
@@ -49,7 +49,7 @@
          // texto sea el contenido de <td>, ubica el elemento <td> al final
          // de la hilera de la tabla
          var celda = document.createElement("td");
-         var textoCelda = document.createTextNode(arg(i));
+         var textoCelda = document.createTextNode(arg[i]);
          celda.appendChild(textoCelda);
          hilera.appendChild(celda);
        }
