@@ -22,7 +22,7 @@
      width: 200px;
    }
    footer {
-      position: absolute;
+      position: relative;
       bottom: 0;
       width: 100%;
    }
@@ -32,20 +32,124 @@
     <title>Random Numbers App</title>
     <meta charset="utf-8" http-equiv="content-type" content="text/html; charset=iso-8859-1">
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
+        <script>
+      // This is called with the results from from FB.getLoginStatus().
+      function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+          // Logged into your app and Facebook.
+          console.log('Ya conectado');     
+          document.getElementById('btn-sign-up').style.display = 'none';
+          document.getElementById('btn-log-in').style.display = 'none';
+          document.getElementById('btn-log-out').style.display = 'block';
+          testAPI();
+        } else {
+         console.log('A conectarse!!!');
+          // The person is not logged into your app or we are unable to tell.
+          document.getElementById('status').innerHTML = 'Por favor haga log in para disfrutar de la web.';
+          document.getElementById('btn-log-out').style.display = 'none';
+          document.getElementById('btn-sign-up').style.display = 'block';
+          document.getElementById('btn-log-in').style.display = 'block'; 
+          
+        }
+      }
+    
+      // This function is called when someone finishes with the Login
+      // Button.  See the onlogin handler attached to it in the sample
+      // code below.
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+    
+      window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '886609554837626',
+        cookie     : true,  // enable cookies to allow the server to access 
+                            // the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.8' // use graph api version 2.8
+      });
+    
+      // Now that we've initialized the JavaScript SDK, we call 
+      // FB.getLoginStatus().  This function gets the state of the
+      // person visiting this page and can return one of three states to
+      // the callback you provide.  They can be:
+      //
+      // 1. Logged into your app ('connected')
+      // 2. Logged into Facebook, but not your app ('not_authorized')
+      // 3. Not logged into Facebook and can't tell if they are logged into
+      //    your app or not.
+      //
+      // These three cases are handled in the callback function.
+    
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+      FB.AppEvents.logPageView(); 
+    
+      };
+    
+      // Load the SDK asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML =
+            'Aqui esta tu grafico, ' + response.name + '!';
+        });
+      
+      }
+      function mysignout(){
+         FB.logout(function(response)
+         {
+             console.log('Successful logout for: ' + response.name); 
+             document.getElementById('status').innerHTML ='Logout realizado. \n Por favor haga log in de nuevo para disfrutar de las herramienta de la web. '
+             document.getElementById('btn-sign-up').style.display = 'block';
+             document.getElementById('btn-log-in').style.display = 'block';
+             document.getElementById('btn-log-out').style.display = 'none';
+             window.location.href = "/";
+         });
+      }
+      </script>
 </head>
  
-<body style=background-color:#FFFFCC;>
+
+<body onload="checkLoginState();" style="background-color:#FFFFCC;">
  
     <div class="container">
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="/">Home</a>
+                    <li role="presentation" class="active"><a href="/">  Home  </a>
                     </li>
-                    <li role="presentation"><a href="#">  Sign In  </a>
+                    <li id="btn-sign-up" role="presentation"><a href="#">  Sign Up  </a>
                     </li>
-                    <li role="presentation"><a href="showSignUp">  Sign Up  </a>
+                    <li id="btn-log-in" >
+                    <!--Below we include the Login Button social plugin. This button uses
+                     the JavaScript SDK to present a graphical Login button that triggers
+                     the FB.login() function when clicked.-->
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+                    </li>
+                    <li id="btn-log-out">
+                      <a onclick="mysignout();" href="#">Log out</a>
                     </li>
                 </ul>
             </nav>
@@ -53,18 +157,28 @@
  
         <div class="principal">
             <h3 class="text-muted">Random Numbers App</h3>
-            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
             </p>
         </div>
-        <div>
-            <iframe frameborder="0" src="https://beebotte.com/dash/1fa46130-bf43-11e7-bfef-6f68fef5ca14" scrolling=no width="557px" height="338px style="scale(0.95)" ></iframe>
-        </div> 
-        
-        <footer class="footer">
-            <p>&copy; Natalia de la Hoz Carracedo - Computacion en red - UAH 2017</p>
-        </footer>
- 
+        <div id="status">
+        </div>
+        <center>
+           <div style="text-align:center;padding:1em 0;"> 
+               <h4>
+                  <a style="text-decoration:none;" href="https://www.zeitverschiebung.net/es/city/3117735"><span style="color:gray;">Hora actual en</span><br />Madrid, Spain</a>
+               </h4> 
+               <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=small&timezone=Europe%2FMadrid" width="100%" height="90" frameborder="0" seamless></iframe>
+           </div>
+           
+           <div>
+               <iframe frameborder="0" src="https://beebotte.com/dash/1fa46130-bf43-11e7-bfef-6f68fef5ca14" scrolling=no width="857px" height="538px" ></iframe>
+           </div> 
+           
+           <footer class="footer">
+               <p>&copy; Natalia de la Hoz Carracedo - Computacion en red - UAH 2017</p>
+           </footer>
+        </center>
     </div>
 </body>
+
  
 </html>
